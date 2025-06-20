@@ -29,7 +29,7 @@ public class BoardController {
 
         boardService.add(data);
 
-        return "board/write";
+        return "redirect:/board/list";
     }
 
     @GetMapping("list")
