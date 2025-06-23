@@ -1,5 +1,6 @@
 package com.example.prj1.member.controller;
 
+import com.example.prj1.member.dto.MemberDto;
 import com.example.prj1.member.dto.MemberForm;
 import com.example.prj1.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -59,5 +60,24 @@ public class MemberController {
         model.addAttribute("member", memberService.get(id));
 
         return "member/view";
+    }
+
+    @PostMapping("remove")
+    public String remove(MemberForm data, RedirectAttributes rttr) {
+        boolean result = memberService.remove(data);
+
+        if (result) {
+            rttr.addFlashAttribute("alert",
+                    Map.of("code", "danger", "message", data.getId() + "님 탈퇴 되었습니다."));
+
+            return "redirect:/board/list";
+        } else {
+            rttr.addFlashAttribute("alert",
+                    Map.of("code", "danger", "message", "암호가 일치하지 않습니다."));
+
+            rttr.addAttribute("id", data.getId());
+
+            return "redirect:/member/view";
+        }
     }
 }
