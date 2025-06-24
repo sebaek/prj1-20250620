@@ -111,4 +111,17 @@ public class MemberService {
         }
 
     }
+
+    public boolean login(String id, String password) {
+        Optional<Member> db = memberRepository.findById(id);
+
+        if (db.isPresent()) {
+            String dbPassword = db.get().getPassword();
+            if (dbPassword.equals(password)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

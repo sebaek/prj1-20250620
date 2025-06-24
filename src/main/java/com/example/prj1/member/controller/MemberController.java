@@ -136,4 +136,19 @@ public class MemberController {
 
         return "member/login";
     }
+
+    @PostMapping("login")
+    public String loginProcess(String id, String password) {
+
+        boolean result = memberService.login(id, password);
+
+        if (result) {
+            // 로그인 성공
+            return "redirect:/board/list";
+        } else {
+            // 로그인 실패
+            return "redirect:/member/login";
+        }
+
+    }
 }
