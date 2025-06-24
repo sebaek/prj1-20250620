@@ -64,6 +64,7 @@ public class BoardController {
             Integer page,
             Model model) {
 
+        // TODO : 검색
         var result = boardService.list(page);
 
 //        model.addAttribute("boardList", result);

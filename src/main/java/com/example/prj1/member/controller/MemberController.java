@@ -81,6 +81,7 @@ public class MemberController {
                          @SessionAttribute(value = "loggedInUser", required = false)
                          MemberDto user,
                          RedirectAttributes rttr) {
+        // TODO : 작성한 글이 있으면 탈퇴 안됨
         boolean result = memberService.remove(data, user);
 
         if (result) {
@@ -122,6 +123,7 @@ public class MemberController {
                        MemberDto user,
                        RedirectAttributes rttr) {
 
+        // TODO: 닉네임 변경 후 네브바 반영 하기
         boolean result = memberService.update(data, user);
 
         if (result) {
