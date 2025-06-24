@@ -68,8 +68,11 @@ public class BoardService {
         dto.setTitle(board.getTitle());
         dto.setContent(board.getContent());
 
-        // TODO : 나중에 변경
-//        dto.setWriter(board.getWriter());
+        MemberDto memberDto = new MemberDto();
+        memberDto.setId(board.getWriter().getId());
+        memberDto.setNickName(board.getWriter().getNickName());
+
+        dto.setWriter(memberDto);
         dto.setCreatedAt(board.getCreatedAt());
 
         return dto;
