@@ -80,15 +80,16 @@ public class MemberController {
     public String remove(MemberForm data,
                          @SessionAttribute(value = "loggedInUser", required = false)
                          MemberDto user,
+                         HttpSession session,
                          RedirectAttributes rttr) {
 
-        // TODO : 탈퇴 후 로그아웃 해야됨
         boolean result = memberService.remove(data, user);
 
         if (result) {
             rttr.addFlashAttribute("alert",
                     Map.of("code", "danger", "message", data.getId() + "님 탈퇴 되었습니다."));
 
+            session.invalidate();
             return "redirect:/board/list";
         } else {
             rttr.addFlashAttribute("alert",
