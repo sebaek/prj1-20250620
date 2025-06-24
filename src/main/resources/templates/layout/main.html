@@ -66,6 +66,13 @@
                             로그인
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a th:href="@{/member/logout}"
+                           class="nav-link"
+                        >
+                            로그아웃
+                        </a>
+                    </li>
 
                     <li class="nav-item" th:if="${session.loggedInUser != null}">
                         <a th:href="@{/member/view(id=${session.loggedInUser.id})}"
