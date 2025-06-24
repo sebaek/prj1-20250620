@@ -34,6 +34,24 @@ CREATE TABLE member
 DROP TABLE member;
 
 
+# 회원만 글을 작성할 수 있으므로
+# board.writer를 member.id로 수정
+# 외래키 제약 사항 추가
+
+# park
+# son
+
+UPDATE board
+SET writer = 'park'
+WHERE id % 2 = 1;
+
+UPDATE board
+SET writer = 'son'
+WHERE id % 2 = 0;
+
+# 외래키 제약 사항 추가
+ALTER TABLE board
+    ADD FOREIGN KEY (writer) REFERENCES member (id);
 
 
 
